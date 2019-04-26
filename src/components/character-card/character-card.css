@@ -1,0 +1,9 @@
+.character-card {
+  width: 25%;
+}
+
+.character-card .inner-card {
+  background-color: #FFF;
+  padding: 15px;
+  margin: 0 10px;
+}

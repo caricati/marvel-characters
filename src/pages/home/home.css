@@ -1,0 +1,28 @@
+#header {
+  height: 54px;
+  text-align: center;
+  background-color: #22262A;
+  margin-bottom: 110px;
+}
+
+#header img {
+  height: 54px;
+}
+
+.page-wrapper > header {
+  margin-bottom: 20px;
+}
+
+.page-wrapper > header h1 {
+  font-size: 38px;
+  color: #FFF;
+  display: inline-block;
+  padding: 0px 15px 4px;
+  background-color: #000;
+}
+
+.card-list {
+  display: flex;
+  margin-left: -10px;
+  margin-right: -10px;
+}
