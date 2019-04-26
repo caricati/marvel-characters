@@ -7,3 +7,8 @@
   padding: 15px;
   margin: 0 10px;
 }
+
+.character-card footer {
+  margin-top: 40px;
+  text-align: center;
+}

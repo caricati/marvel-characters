@@ -11,6 +11,8 @@
 
 .page-wrapper > header {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .page-wrapper > header h1 {
