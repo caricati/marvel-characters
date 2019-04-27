@@ -1,12 +1,15 @@
 .btn-primary {
   color: #FFF;
   font-weight: 500;
+  cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
   position: relative;
   padding: 0;
-  transition: background-color .3s ease-in-out;
+  border: 0;
+  appearance: none;
+  background: transparent;
 }
 
 .btn-primary .btn-primary-inner {
@@ -49,28 +52,3 @@
   background-color: #e62429;
   margin-right: 16px;
 }
-
-/* 
-.btn-primary::before,
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-width: 10px 10px 0 0;
-  transition: border .3s ease-in-out;
-}
-
-.btn-primary::before {
-  top: 0; left: 0;
-  border-color: #FFF transparent transparent transparent;
-}
-
-.btn-primary::after {
-  bottom: 0; right: 0;
-  border-color: transparent #FFF transparent transparent;
-}
-
-.btn-primary:hover::before,
-.btn-primary:hover::after {
-  border-width: 0;
-} */
