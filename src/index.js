@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import MainTemplate from './templates/main-template'
 import reducers from './redux/reducers'
@@ -13,7 +14,9 @@ const store = createStore(reducers, applyMiddleware(thunk))
 
 ReactDOM.render((
   <Provider store={store}>
-    <MainTemplate />
+    <Router>
+      <MainTemplate />
+    </Router>
   </Provider>
 ), document.getElementById('root'))
 

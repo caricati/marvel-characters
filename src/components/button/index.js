@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import './button.css'
 
 export default function Button(props) {
   const { to, children, onClick } = props
   if(to) {
     return (
-      <a href={to} onClick={onClick} className="btn-primary">
+      <Link to={to} onClick={onClick} className="btn-primary">
         <span className="btn-primary-inner">
           {children}
         </span>
-      </a>
+      </Link>
     )
   }
 

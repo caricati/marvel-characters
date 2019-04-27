@@ -17,6 +17,7 @@ export default function CharacterList({ results, loading, count }) {
     <div className="character-list card-list">
       {results.map(({ id, name, thumbnail }) => (
         <CharacterCard
+          id={id}
           key={id}
           title={name}
           image={`${thumbnail.path}/portrait_incredible.${thumbnail.extension}`}
