@@ -1,0 +1,14 @@
+
+.character-list.loading {
+  color: #FFF;
+  font-size: 32px;
+  text-align: center;
+  padding: 50px 0 0;
+}
+
+.character-list.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
