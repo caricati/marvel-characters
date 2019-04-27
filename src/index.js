@@ -1,16 +1,13 @@
 import React from 'react'
-import thunk from 'redux-thunk'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+import store from './redux/store'
 import MainTemplate from './templates/main-template'
-import reducers from './redux/reducers'
+
 import * as serviceWorker from './serviceWorker'
 import './reset.css'
-
-const store = createStore(reducers, applyMiddleware(thunk))
 
 ReactDOM.render((
   <Provider store={store}>

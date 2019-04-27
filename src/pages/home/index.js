@@ -5,18 +5,24 @@ import CharacterSearch from '../../components/character-search'
 import { fetchCharacters } from '../../redux/actions'
 import './home.css'
 
+const initials = ['3', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
 class Homepage extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchCharacters())
+    this.props.fetchCharacters()
+  }
+
+  fetchByInitial = (nameStartsWith) => {
+    this.props.fetchCharacters({ nameStartsWith })
   }
 
   handleSearch = (e) => {
     e.preventDefault()
     const { value: name } = e.target['input-search-character']
-
-    return this.props.dispatch(fetchCharacters({
+    
+    this.props.fetchCharacters({
       ...(name ? { name } : {}),
-    }))
+    })
   }
 
   render() {
@@ -27,6 +33,16 @@ class Homepage extends Component {
           <h1>Characters</h1>
           <CharacterSearch onSubmit={this.handleSearch} />
         </header>
+        <nav className="search-by-inicial">
+          {initials.map(initial => (
+            <button
+              key={initial}
+              onClick={() => this.fetchByInitial(initial)}
+            >
+              {initial}
+            </button>
+          ))}
+        </nav>
         <CharacterList {...characters} />
       </section>
     )
@@ -37,4 +53,4 @@ const mapStateToProps = ({ characters }) => ({
   characters,
 })
 
-export default connect(mapStateToProps)(Homepage)
+export default connect(mapStateToProps, { fetchCharacters })(Homepage)

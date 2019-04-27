@@ -1,5 +1,5 @@
 #homepage.page-wrapper > header {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
 }
@@ -10,4 +10,20 @@
   display: inline-block;
   padding: 0px 15px 4px;
   background-color: #000;
+}
+
+#homepage.page-wrapper .search-by-inicial {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #FFF;
+}
+
+#homepage.page-wrapper .search-by-inicial button {
+  color: #FFF;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  background-color: rgba(230, 36, 41, .9);
 }
