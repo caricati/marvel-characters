@@ -4,10 +4,16 @@ import { api } from '../marvel'
 
 const URI_GET_CHARACTERS = '/v1/public/characters'
 
-export function fetchCharacters() {
+export function fetchCharacters(filter = {}) {
   return dispatch => {
     const { params, URL } = api()
-    const request = axios.get(`${URL}${URI_GET_CHARACTERS}`, { params })
+    const request = axios.get(`${URL}${URI_GET_CHARACTERS}`, {
+      params: {
+        ...params,
+        ...filter,
+      }
+    })
+    
     dispatch({ type: FETCH_CHARACTER })
 
     return request

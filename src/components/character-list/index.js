@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import CharacterCard from '../character-card'
 import './character-list.css'
 
-export default function CharacterList ({ results, loading }) {
+export default function CharacterList({ results, loading, count }) {
+  
   if (loading) {
-    return <p className="character-list loading">Carregando...</p>
+    return <p className="character-list message-list">Carregando...</p>
+  }
+
+  if (count === 0) {
+    return <p className="character-list message-list">Nenhum personagem encontrado</p>
   }
 
   return (
@@ -24,9 +29,11 @@ export default function CharacterList ({ results, loading }) {
 CharacterList.defaultProps = {
   results: [],
   loading: false,
+  count: null,
 }
 
 CharacterList.propTypes = {
+  count: PropTypes.number,
   loading: PropTypes.bool,
   results: PropTypes.arrayOf(
     PropTypes.shape({

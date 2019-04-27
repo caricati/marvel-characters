@@ -12,8 +12,11 @@ class Homepage extends Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    const { value } = e.target['input-search-character']
-    console.log('search value:', value)
+    const { value: name } = e.target['input-search-character']
+
+    return this.props.dispatch(fetchCharacters({
+      ...(name ? { name } : {}),
+    }))
   }
 
   render() {
