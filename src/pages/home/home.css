@@ -1,10 +1,10 @@
-.page-wrapper > header {
+#homepage.page-wrapper > header {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.page-wrapper > header h1 {
+#homepage.page-wrapper > header h1 {
   font-size: 38px;
   color: #FFF;
   display: inline-block;
@@ -12,7 +12,14 @@
   background-color: #000;
 }
 
-.card-list {
+#homepage .loading {
+  color: #FFF;
+  font-size: 32px;
+  text-align: center;
+  padding: 50px 0 0;
+}
+
+#homepage .card-list {
   display: flex;
   flex-wrap: wrap;
   margin-left: -10px;

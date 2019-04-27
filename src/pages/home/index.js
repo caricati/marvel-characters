@@ -11,22 +11,28 @@ class Homepage extends Component {
   }
 
   render() {
-    const { characters: { results } } = this.props
+    const { characters: { results, loading } } = this.props
     return (
-      <section className="page-wrapper container">
+      <section id="homepage" className="page-wrapper container">
         <header>
           <h1>Characters</h1>
           <Button to="/">Procuar</Button>
         </header>
-        <div className="card-list">
-          {results.map(({ id, name, thumbnail }) => (
-            <CharacterCard
-              key={id}
-              title={name}
-              image={`${thumbnail.path}/portrait_incredible.${thumbnail.extension}`}
-            />
-          ))}
-        </div>
+        {
+          loading
+            ? <p className="loading">Carregando...</p>
+            : (
+              <div className="card-list">
+                {results.map(({ id, name, thumbnail }) => (
+                  <CharacterCard
+                    key={id}
+                    title={name}
+                    image={`${thumbnail.path}/portrait_incredible.${thumbnail.extension}`}
+                  />
+                ))}
+              </div>
+            )
+        }
       </section>
     )
   }
