@@ -1,33 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { api } from '../../marvel'
+import { connect } from 'react-redux'
 import CharacterCard from '../../components/character-card'
 import Button from '../../components/button'
+import { fetchCharacters } from '../../redux/actions'
 import './home.css'
 
-const URI_GET_CHARACTERS = '/v1/public/characters'
-
-export default class Homepage extends Component {
-  state = {
-    characters: [],
-  }
-
-  async componentWillMount() {
-    const { params, URL } = api()
-    const res = await axios.get(`${URL}${URI_GET_CHARACTERS}`, { params })
-    console.log({ res })
-    const { results } = res.data.data
-    this.setState({
-      characters: results.map(char => ({
-        id: char.id,
-        name: char.name,
-        image: `${char.thumbnail.path}/portrait_incredible.${char.thumbnail.extension}`,
-      })),
-    })
+class Homepage extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchCharacters())
   }
 
   render() {
-    const { characters } = this.state
+    const { characters: { results } } = this.props
     return (
       <section className="page-wrapper container">
         <header>
@@ -35,11 +19,21 @@ export default class Homepage extends Component {
           <Button to="/">Procuar</Button>
         </header>
         <div className="card-list">
-          {characters.map(({ id, name, image }) => (
-            <CharacterCard key={id} title={name} image={image} />
+          {results.map(({ id, name, thumbnail }) => (
+            <CharacterCard
+              key={id}
+              title={name}
+              image={`${thumbnail.path}/portrait_incredible.${thumbnail.extension}`}
+            />
           ))}
         </div>
       </section>
     )
   }
 }
+
+const mapStateToProps = ({ characters }) => ({
+  characters,
+})
+
+export default connect(mapStateToProps)(Homepage)
