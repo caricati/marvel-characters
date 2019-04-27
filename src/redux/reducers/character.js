@@ -1,4 +1,4 @@
-import { FETCH_CHARACTERS_SUCCESS, FETCH_CHARACTERS } from '../constantes'
+import { FETCH_CHARACTER_SUCCESS, FETCH_CHARACTER } from '../constantes'
 
 const defaults = {
   count: 0,
@@ -11,12 +11,12 @@ const defaults = {
 
 export default (state = defaults, action) => {
   switch (action.type) {
-    case FETCH_CHARACTERS:
+    case FETCH_CHARACTER:
       return {
         ...state,
         loading: true,
       }
-    case FETCH_CHARACTERS_SUCCESS:
+    case FETCH_CHARACTER_SUCCESS:
       return {
         ...action.payload,
         loading: false,

@@ -1,10 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 // import PropTypes from 'prop-types'
+import { fetchCharacter } from '../../redux/actions'
 import Button from '../../components/button'
 import './character.css'
 
-export default class CharacterPage extends Component {
+class CharacterPage extends Component {
+  componentDidMount() {
+    const { id } = this.props.match.params
+    this.props.dispatch(fetchCharacter(id))
+  }
+
   render() {
+    const { character } = this.props
+    
+    if (character.loading || character.loading === null) {
+      return <p>Loading...</p>
+    }
+
+    const {
+      name: profileName,
+      thumbnail,
+      series,
+      stories,
+    } = character.results[0]
+
     return (
       <section id="character-page" className="container">
         <nav className="character-page-navbar">
@@ -13,27 +33,23 @@ export default class CharacterPage extends Component {
         <div className="character-page-wraper">
           <header>
             <figure>
-              <img src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/detail.jpg" alt="" />
+              <img src={`${thumbnail.path}/detail.${thumbnail.extension}`} alt={profileName} />
             </figure>
           </header>
           <div className="charater-details">
-            <h1>char name</h1>
-            <h2>Lorem ipsum dolor sit</h2>
+            <h1>{profileName}</h1>
+            <h2>Séries</h2>
             <ul>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
+              {series.items.map(({ name }) => (
+                <li key={name}>{name}</li>
+              ))}
             </ul>
             
-            <h2>Lorem ipsum dolor sit</h2>
+            <h2>Histórias</h2>
             <ul>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, similique?</li>
+              {stories.items.map(({ name }) => (
+                <li key={name}>{name}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -41,3 +57,9 @@ export default class CharacterPage extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ character }) => ({
+  character,
+})
+
+export default connect(mapStateToProps)(CharacterPage)

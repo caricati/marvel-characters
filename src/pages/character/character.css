@@ -13,6 +13,7 @@
 }
 
 #character-page .character-page-wraper > * {
+  width: 50%;
   flex: 1 0 50%;
 }
 
@@ -31,9 +32,17 @@
 }
 
 #character-page .character-page-wraper .charater-details h2 {
+  font-size: 2rem;
   margin-bottom: 15px;
 }
 
 #character-page .character-page-wraper .charater-details ul {
   margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+#character-page .character-page-wraper .charater-details ul li {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  font-weight: 400;
 }
