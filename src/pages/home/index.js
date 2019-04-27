@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CharacterCard from '../../components/character-card'
 import Button from '../../components/button'
+import CharacterCard from '../../components/character-card'
+import CharacterSearch from '../../components/character-search'
 import { fetchCharacters } from '../../redux/actions'
 import './home.css'
 
@@ -16,7 +17,7 @@ class Homepage extends Component {
       <section id="homepage" className="page-wrapper container">
         <header>
           <h1>Characters</h1>
-          <Button to="/">Procuar</Button>
+          <CharacterSearch />
         </header>
         {
           loading
