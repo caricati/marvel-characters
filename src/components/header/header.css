@@ -1,0 +1,11 @@
+#header {
+  height: 54px;
+  text-align: center;
+  padding: 5px 0;
+  background-color: rgba(0, 0, 0, .7);
+  margin-bottom: 110px;
+}
+
+#header img {
+  height: 54px;
+}
