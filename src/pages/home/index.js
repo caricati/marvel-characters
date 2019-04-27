@@ -1,26 +1,45 @@
-import React from 'react'
+import React, { Component } from 'react'
+import axios from 'axios'
+import { api } from '../../marvel'
 import CharacterCard from '../../components/character-card'
 import Button from '../../components/button'
 import './home.css'
 
-export default () => (
-  <div id="marvel">
-    <header id="header">
-      <img src="https://i.annihil.us/u/prod/misc/marvel.svg" alt="Marvel" />
-    </header>
+const URI_GET_CHARACTERS = '/v1/public/characters'
 
-    <section className="page-wrapper container">
-      <header>
-        <h1>Marvel</h1>
-        <Button to="/">Criar personagem</Button>
-      </header>
+export default class Homepage extends Component {
+  state = {
+    characters: [],
+  }
 
-      <div className="card-list">
-        <CharacterCard />
-        <CharacterCard />
-        <CharacterCard />
-        <CharacterCard />
-      </div>
-    </section>
-  </div>
-)
+  async componentWillMount() {
+    const { params, URL } = api()
+    const res = await axios.get(`${URL}${URI_GET_CHARACTERS}`, { params })
+    console.log({ res })
+    const { results } = res.data.data
+    this.setState({
+      characters: results.map(char => ({
+        id: char.id,
+        name: char.name,
+        image: `${char.thumbnail.path}/portrait_incredible.${char.thumbnail.extension}`,
+      })),
+    })
+  }
+
+  render() {
+    const { characters } = this.state
+    return (
+      <section className="page-wrapper container">
+        <header>
+          <h1>Characters</h1>
+          <Button to="/">Procuar</Button>
+        </header>
+        <div className="card-list">
+          {characters.map(({ id, name, image }) => (
+            <CharacterCard key={id} title={name} image={image} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+}
