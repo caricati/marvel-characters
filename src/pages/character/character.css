@@ -1,0 +1,39 @@
+#character-page {
+  margin-bottom: 110px;
+}
+
+#character-page .character-page-navbar {
+  margin-bottom: 30px;
+}
+
+#character-page .character-page-wraper {
+  padding: 20px;
+  background-color: #FFF;
+  display: flex;
+}
+
+#character-page .character-page-wraper > * {
+  flex: 1 0 50%;
+}
+
+#character-page .character-page-wraper > header figure img {
+  width: 100%;
+}
+
+#character-page .character-page-wraper h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+#character-page .character-page-wraper .charater-details {
+  margin-left: 40px;
+}
+
+#character-page .character-page-wraper .charater-details h2 {
+  margin-bottom: 15px;
+}
+
+#character-page .character-page-wraper .charater-details ul {
+  margin-bottom: 20px;
+}
