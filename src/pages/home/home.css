@@ -11,17 +11,3 @@
   padding: 0px 15px 4px;
   background-color: #000;
 }
-
-#homepage .loading {
-  color: #FFF;
-  font-size: 32px;
-  text-align: center;
-  padding: 50px 0 0;
-}
-
-#homepage .card-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -10px;
-  margin-right: -10px;
-}
