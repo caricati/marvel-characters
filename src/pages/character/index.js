@@ -1,16 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCharacter } from '../../redux/actions'
+import { fetchCharacter, updateCharacterDescription } from '../../redux/actions'
 import Button from '../../components/button'
 import Modal from '../../components/modal'
 import './character.css'
 
 class CharacterPage extends Component {
-  state = { modalOpen: false }
+  state = {
+    modalOpen: false,
+    description: this.props.description,
+  }
 
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.fetchCharacter(id)
+  }
+
+  handleSaveDescription = () => {
+    this.props.updateCharacterDescription({
+      id: this.props.character.results[0].id,
+      description: this.state.description,
+    })
+    this.setState({ modalOpen: false })
   }
 
   render() {
@@ -73,10 +84,13 @@ class CharacterPage extends Component {
           </header>
           <div className="modal-context">
             <p>Descrição:</p>
-            <textarea />
+            <textarea
+              defaultValue={description}
+              onChange={e => this.setState({ description: e.currentTarget.value })}
+            />
           </div>
           <footer className="modal-footer">
-            <Button>Salvar</Button>
+            <Button onClick={this.handleSaveDescription}>Salvar</Button>
             <Button
               onClick={() => this.setState({ modalOpen: false })}
             >
@@ -93,4 +107,10 @@ const mapStateToProps = ({ character }) => ({
   character,
 })
 
-export default connect(mapStateToProps, { fetchCharacter })(CharacterPage)
+export default connect(
+  mapStateToProps,
+  {
+    fetchCharacter,
+    updateCharacterDescription,
+  }
+)(CharacterPage)
